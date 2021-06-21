@@ -1,0 +1,63 @@
+        self.worksheet['A1'] = '原文件名'
+        self.worksheet['B1'] = '翻译'
+        self.worksheet['C1'] = '完整文件名'
+        self.worksheet['D1'] = '路径'
+        n = 2
+        for file in filenames:
+            if len(file) > 1:
+                name_src = file[0]
+                name_dest = self.refactor(self.filename_translation(self.trim(name_src)))
+                fullname_src = name_src + "." + file[1]
+                fullname_dest = name_src + "-" + name_dest + "." + file[1]
+                fullpath_src = os.path.join(self.pathValue, fullname_src)
+                fullpath_dest = os.path.join(self.pathValue, fullname_dest)
+
+                self.worksheet['A' + str(n)] = name_src
+                self.worksheet['B' + str(n)] = name_dest
+                self.worksheet['C' + str(n)] = fullname_dest
+                self.worksheet['D' + str(n)].value = fullpath_dest
+                self.worksheet['D' + str(n)].hyperlink = "file://" + fullpath_dest
+                n += 1
+        catalog = self.pathValue + '.xlsx'
+        self.workbook.save(catalog)
+
+
+        /Users/nora/Desktop/Python/FolderScanner/venv/bin/python /Users/nora/Desktop/Python/FolderScanner/main.py
+3
+4
+/Users/nora/Desktop/test
+.DS_Store
+/Users/nora/Desktop/test
+try-尝试 .txt
+/Users/nora/Desktop/test
+error-错误 .txt
+/Users/nora/Desktop/test
+test-测试 .txt
+here is the end for /Users/nora/Desktop/test
+0
+3
+/Users/nora/Desktop/test/t2
+t2-3
+/Users/nora/Desktop/test/t2
+t2-2
+/Users/nora/Desktop/test/t2
+t2-1
+here is the end for /Users/nora/Desktop/test/t2
+0
+3
+/Users/nora/Desktop/test/t3
+t3-1
+/Users/nora/Desktop/test/t3
+t3-3
+/Users/nora/Desktop/test/t3
+t3-2
+here is the end for /Users/nora/Desktop/test/t3
+0
+3
+/Users/nora/Desktop/test/t1
+t1-3
+/Users/nora/Desktop/test/t1
+t1-2
+/Users/nora/Desktop/test/t1
+t1-1
+here is the end for /Users/nora/Desktop/test/t1
